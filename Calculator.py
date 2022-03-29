@@ -1,4 +1,6 @@
-# Programmed by: Mubashir Ahmed OR known as Mubashir78 on Github
+# Programmed by: Mubashir Ahmed OR known as Mubashir78 on GitHub
+# https://www.github.com/Mubashir78
+
 import math
 from time import sleep
 from sys import stdout
@@ -23,7 +25,7 @@ def print_slow(str):
     for letter in str:
         stdout.write(letter)
         stdout.flush()
-        sleep(0.03)
+        sleep(0.025)
     print(" ")
 
 
@@ -34,82 +36,83 @@ def choices_for_user():
     print(color.ITALIC+"\n1- Addition\n2- Subtraction\n3- Multiplication\n4- Division\n5- Square of 'x'\n6- Square root of 'x'"+color.END)
     sleep(2)
 
-    choice_of_user()
+    return choice_of_user()
 
 def choice_of_user():
     print(" ")
     choice = input(color.CYAN+color.BOLD+"Your Choice: "+color.END)
     try:
         choice = int(choice)
+
     except:
         choice = choice
-    finally:
-        if choice == 1:
-            print(" ")
-            print_slow(color.BOLD+color.ITALIC+"|Addition|\n"+color.END)
-            sleep(1)
 
-            result = addition()
-            sleep(0.7)
+    if choice == 1:
+        print(" ")
+        print_slow(color.BOLD+color.ITALIC+"|Addition|\n"+color.END)
+        sleep(1)
 
-            print(" ")
-            print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
-            restart_code()
+        result = addition()
+        sleep(0.7)
 
-        elif choice == 2:
-            print(" ")
-            print_slow(color.BOLD+color.ITALIC+"|Subtraction|\n"+color.END)
-            sleep(1)
-            
-            result = subtraction()
-            print(" ")
-            print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
-            restart_code()
+        print(" ")
+        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        return restart_code()
 
-        elif choice == 3:
-            print(" ")
-            print_slow(color.BOLD+color.ITALIC+"|Multiplication|\n"+color.END)
-            sleep(1)
-            
-            result = multiplication()
-            print(" ")
-            print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
-            restart_code()
+    elif choice == 2:
+        print(" ")
+        print_slow(color.BOLD+color.ITALIC+"|Subtraction|\n"+color.END)
+        sleep(1)
+        
+        result = subtraction()
+        print(" ")
+        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        return restart_code()
 
-        elif choice == 4:
-            print(" ")
-            print_slow(color.BOLD+color.ITALIC+"|Division|\n"+color.END)
-            sleep(1)
-            
-            result = division()
-            print(" ")
-            print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
-            restart_code()
+    elif choice == 3:
+        print(" ")
+        print_slow(color.BOLD+color.ITALIC+"|Multiplication|\n"+color.END)
+        sleep(1)
+        
+        result = multiplication()
+        print(" ")
+        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        return restart_code()
 
-        elif choice == 5:
-            print(" ")
-            print_slow(color.BOLD+color.ITALIC+"|Square of 'x'|\n"+color.END)
-            sleep(1)
-            
-            result = square_of_x()
-            print(" ")
-            print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
-            restart_code()
+    elif choice == 4:
+        print(" ")
+        print_slow(color.BOLD+color.ITALIC+"|Division|\n"+color.END)
+        sleep(1)
+        
+        result = division()
+        print(" ")
+        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        return restart_code()
 
-        elif choice == 6:
-            print(" ")
-            print_slow(color.BOLD+color.ITALIC+"|Square Root of 'x'|\n"+color.END)
-            sleep(1)
-            
-            result = square_root_of_x()
-            print(" ")
-            print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
-            restart_code()
+    elif choice == 5:
+        print(" ")
+        print_slow(color.BOLD+color.ITALIC+"|Square of 'x'|\n"+color.END)
+        sleep(1)
+        
+        result = square_of_x()
+        print(" ")
+        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        return restart_code()
 
-        else:
-            print_slow(error_code)
-            sleep(1.3)
-            choice_of_user()
+    elif choice == 6:
+        print(" ")
+        print_slow(color.BOLD+color.ITALIC+"|Square Root of 'x'|\n"+color.END)
+        sleep(1)
+        
+        result = square_root_of_x()
+        print(" ")
+        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        return restart_code()
+
+    else:
+        print_slow(error_code)
+        sleep(1.3)
+        return choice_of_user()
 
 def restart_code():
     sleep(0.8)
@@ -119,18 +122,18 @@ def restart_code():
     
     if restart == "retry":
         print(" ")
-        choices_for_user()
+        return choices_for_user()
     
     elif restart == "exit":
         print(" ")
         print_slow(color.BOLD+"The calculator will now exit."+color.END)
         sleep(0.7)
-        exit()
+        return
     
     else:
         print_slow(error_code)
         print(" ")
-        restart_code()
+        return restart_code()
 
 def startup():
     print_slow("===================================")
@@ -138,7 +141,7 @@ def startup():
     print("   Programmed By: Mubashir Ahmed"+color.END)
     print("===================================")
     sleep(2.3)
-    choices_for_user()
+    return choices_for_user()
 
 def input_1():
     a = input(color.CYAN+"Type the first number: "+color.END)
@@ -153,19 +156,18 @@ def input_1():
             print_slow(error_code)
             sleep(0.7)
             print(" ")
-            input_1()
+            return input_1()
 
     except ValueError:
         print_slow(error_code)
         sleep(0.7)
         print(" ")
-        input_1()
+        return input_1()
 
-    finally:
-        print(" ")
-        print_slow(calcul)
-        sleep(1)
-        return a,b
+    print(" ")
+    print_slow(calcul)
+    sleep(1)
+    return a,b
     
 def input_2():
     x = input(color.CYAN+"Type the number: "+color.END)
@@ -177,13 +179,12 @@ def input_2():
         print_slow(error_code)
         sleep(0.7)
         print(" ")
-        input_2()
+        return input_2()
     
-    finally:
-        print(" ")
-        print_slow(calcul)
-        sleep(1)
-        return x
+    print(" ")
+    print_slow(calcul)
+    sleep(1)
+    return x
 
 def addition():
     num1,num2 = input_1()
@@ -217,4 +218,6 @@ def square_root_of_x():
     return reduced_result
 
 startup()
-# Programmed by: Mubashir Ahmed OR known as Mubashir78 on Github
+
+# Programmed by: Mubashir Ahmed OR known as Mubashir78 on GitHub
+# https://www.github.com/Mubashir78
