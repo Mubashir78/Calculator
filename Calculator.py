@@ -1,4 +1,4 @@
-# Programmed by: Mubashir Ahmed OR known as Mubashir78 on GitHub
+# Programmed by: Mubashir Ahmed OR known as Mubashir78 on Github
 # https://www.github.com/Mubashir78
 
 import math
@@ -30,11 +30,11 @@ def print_slow(str):
 
 
 def choices_for_user():
-    print_slow(color.BOLD+"Choose the type of operation you wish to apply:"+color.END)
-    sleep(0.7)
+    print_slow(color.BOLD+"\nChoose the type of operation you wish to apply:"+color.END)
+    sleep(0.5)
 
     print(color.ITALIC+"\n1- Addition\n2- Subtraction\n3- Multiplication\n4- Division\n5- Square of 'x'\n6- Square root of 'x'"+color.END)
-    sleep(2)
+    sleep(1)
 
     return choice_of_user()
 
@@ -44,95 +44,73 @@ def choice_of_user():
     try:
         choice = int(choice)
 
-    except:
-        choice = choice
+    except ValueError:
+        print_slow(error_code)
+        sleep(0.8)
+        return choice_of_user()
 
     if choice == 1:
-        print(" ")
-        print_slow(color.BOLD+color.ITALIC+"|Addition|\n"+color.END)
-        sleep(1)
-
-        result = addition()
+        print_slow(color.BOLD+color.ITALIC+"\n|Addition|"+color.END)
         sleep(0.7)
 
-        print(" ")
-        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        result = addition()
+        print(color.GREEN+color.UNDERLINE+f"\nThe result is {result}"+color.END)
         return restart_code()
 
     elif choice == 2:
-        print(" ")
-        print_slow(color.BOLD+color.ITALIC+"|Subtraction|\n"+color.END)
-        sleep(1)
+        print_slow(color.BOLD+color.ITALIC+"\n|Subtraction|"+color.END)
+        sleep(0.7)
         
         result = subtraction()
-        print(" ")
-        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        print(color.GREEN+color.UNDERLINE+f"\nThe result is {result}"+color.END)
         return restart_code()
 
     elif choice == 3:
-        print(" ")
-        print_slow(color.BOLD+color.ITALIC+"|Multiplication|\n"+color.END)
-        sleep(1)
+        print_slow(color.BOLD+color.ITALIC+"\n|Multiplication|"+color.END)
+        sleep(0.7)
         
         result = multiplication()
-        print(" ")
-        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        print(color.GREEN+color.UNDERLINE+f"\nThe result is {result}"+color.END)
         return restart_code()
 
     elif choice == 4:
-        print(" ")
-        print_slow(color.BOLD+color.ITALIC+"|Division|\n"+color.END)
-        sleep(1)
+        print_slow(color.BOLD+color.ITALIC+"\n|Division|"+color.END)
+        sleep(0.7)
         
         result = division()
-        print(" ")
-        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        print(color.GREEN+color.UNDERLINE+f"\nThe result is {result}"+color.END)
         return restart_code()
 
     elif choice == 5:
-        print(" ")
-        print_slow(color.BOLD+color.ITALIC+"|Square of 'x'|\n"+color.END)
-        sleep(1)
+        print_slow(color.BOLD+color.ITALIC+"\n|Square of 'x'|"+color.END)
+        sleep(0.7)
         
         result = square_of_x()
-        print(" ")
-        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        print(color.GREEN+color.UNDERLINE+f"\nThe result is {result}"+color.END)
         return restart_code()
 
     elif choice == 6:
-        print(" ")
-        print_slow(color.BOLD+color.ITALIC+"|Square Root of 'x'|\n"+color.END)
-        sleep(1)
+        print_slow(color.BOLD+color.ITALIC+"\n|Square Root of 'x'|"+color.END)
+        sleep(0.7)
         
         result = square_root_of_x()
-        print(" ")
-        print(color.GREEN+color.UNDERLINE+f"The result is {result}"+color.END)
+        print(color.GREEN+color.UNDERLINE+f"\nThe result is {result}"+color.END)
         return restart_code()
 
-    else:
-        print_slow(error_code)
-        sleep(1.3)
-        return choice_of_user()
 
 def restart_code():
     sleep(0.8)
-    
-    print(" ")
-    restart = input(color.BLUE+color.BOLD+"Do you wish to retry or exit?: "+color.END).lower()
+    restart = input(color.BLUE+color.BOLD+"\nDo you wish to retry or exit?: "+color.END).lower()
     
     if restart == "retry":
-        print(" ")
         return choices_for_user()
     
     elif restart == "exit":
-        print(" ")
-        print_slow(color.BOLD+"The calculator will now exit."+color.END)
-        sleep(0.7)
-        return
+        print_slow(color.BOLD+"\nThe calculator will now exit."+color.END)
+        return sleep(0.7)
     
     else:
         print_slow(error_code)
-        print(" ")
         return restart_code()
 
 def startup():
@@ -140,37 +118,30 @@ def startup():
     print(color.ITALIC+"        'Basic Calculator'")
     print("   Programmed By: Mubashir Ahmed"+color.END)
     print("===================================")
-    sleep(2.3)
-    return choices_for_user()
+    sleep(2)
+    choices_for_user()
 
-def input_1():
-    a = input(color.CYAN+"Type the first number: "+color.END)
-    b = input(color.CYAN+"Type the second number: "+color.END)
-    
-    try:
-        a = float(a)
+def input_1(sign):
+    user_input = input("\nEnter the numbers with the appropriate sign in between: ")
+    input_list = user_input.split(f"{sign}")
+    float_list = []
+
+    for num in input_list:
         try:
-            b = float(b)
-        
+            float_list.append(float(num))
+
         except ValueError:
             print_slow(error_code)
             sleep(0.7)
-            print(" ")
-            return input_1()
+            return input_1(sign)
 
-    except ValueError:
-        print_slow(error_code)
-        sleep(0.7)
-        print(" ")
-        return input_1()
-
-    print(" ")
-    print_slow(calcul)
+    del input_list
+    print_slow(f"\n{calcul}")
     sleep(1)
-    return a,b
+    return float_list
     
 def input_2():
-    x = input(color.CYAN+"Type the number: "+color.END)
+    x = input(color.CYAN+"\nType the number: "+color.END)
     
     try:
         x = float(x)
@@ -178,46 +149,55 @@ def input_2():
     except ValueError:
         print_slow(error_code)
         sleep(0.7)
-        print(" ")
         return input_2()
     
-    print(" ")
-    print_slow(calcul)
-    sleep(1)
+    print_slow(f"\n{calcul}")
+    sleep(0.8)
     return x
 
 def addition():
-    num1,num2 = input_1()
-    result = num1 + num2
-    return result
+    num_list = input_1("+")
+    addition = num_list[0]
+
+    for num in num_list[1:]:
+        addition = addition + num
+    return addition
 
 def subtraction():
-    num1,num2 = input_1()
-    result = num1 - num2
-    return result
+    num_list = input_1("-")
+    subtraction = num_list[0]
+
+    for num in num_list[1:]:
+        subtraction = subtraction - num
+    return subtraction
 
 def multiplication():
-    num1,num2 = input_1()
-    result = num1 * num2
-    return result
+    num_list = input_1("*")
+    multiplication = num_list[0]
+    
+    for num in num_list[1:]:
+        multiplication = multiplication * num
+    
+    return multiplication
 
 def division():
-    num1,num2 = input_1()
-    result = num1 / num2
-    return result
+    num_list = input_1("/")
+    division = num_list[0]
+
+    for num in num_list[1:]:
+        division = division / num
+    return round(division, 5)
 
 def square_of_x():
     num1 = input_2()
-    result = num1 * num1
+    result = num1 ** 2
     return result
 
 def square_root_of_x():
     num1 = input_2()
     result = math.sqrt(num1)
-    reduced_result = round(result,3)
-    return reduced_result
+    return round(result, 5) 
 
 startup()
-
-# Programmed by: Mubashir Ahmed OR known as Mubashir78 on GitHub
+# Programmed by: Mubashir Ahmed OR known as Mubashir78 on Github
 # https://www.github.com/Mubashir78
