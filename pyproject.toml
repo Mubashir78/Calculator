@@ -1,0 +1,16 @@
+[project]
+name = "calculator"
+version = "1.0.0"
+description = "Basic CLI calculator with arithmetic operations"
+authors = [
+    { name = "Mubashir Ahmed", email = "mubashirrindbaloch@gmail.com" },
+]
+requires-python = ">=3.8"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
